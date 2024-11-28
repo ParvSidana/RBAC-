@@ -1,10 +1,11 @@
-# **RBAC System**
+# **RBAC Implementation**
 
 This repository implements a **Role-Based Access Control (RBAC)** system with secure authentication, authorization, and user role management.
 
 ---
 
 ## **Features**
+
 - **User Roles**: Supports three roles: `Admin`, `Moderator`, and `User`.
 - **Authentication**:
   - User login, registration, and logout.
@@ -19,34 +20,38 @@ This repository implements a **Role-Based Access Control (RBAC)** system with se
 ## **API Endpoints**
 
 ### **Authentication Routes**
-| Method | Endpoint               | Description                     |
-|--------|------------------------|---------------------------------|
-| POST   | `/api/auth/register`   | Register a new user             |
-| POST   | `/api/auth/login`      | Log in an existing user         |
-| POST   | `/api/auth/logout`     | Log out a user (JWT required)   |
+
+| Method | Endpoint             | Description                   |
+| ------ | -------------------- | ----------------------------- |
+| POST   | `/api/auth/register` | Register a new user           |
+| POST   | `/api/auth/login`    | Log in an existing user       |
+| POST   | `/api/auth/logout`   | Log out a user (JWT required) |
 
 ### **Role-Based Routes**
-| Method | Endpoint               | Description                                        |
-|--------|------------------------|----------------------------------------------------|
-| GET    | `/api/admin`           | Accessible only to users with the `Admin` role     |
-| GET    | `/api/moderator`       | Accessible only to users with the `Moderator` role |
-| GET    | `/api/user`            | Accessible to all authenticated users             |
-| PATCH  | `/api/update-role`     | Admin updates a user's role                       |
 
+| Method | Endpoint           | Description                                        |
+| ------ | ------------------ | -------------------------------------------------- |
+| GET    | `/api/admin`       | Accessible only to users with the `Admin` role     |
+| GET    | `/api/moderator`   | Accessible only to users with the `Moderator` role |
+| GET    | `/api/user`        | Accessible to all authenticated users              |
+| PATCH  | `/api/update-role` | Admin updates a user's role                        |
 
 ---
 
 ## **User Roles**
 
 ### **Admin**
+
 - Full access, including managing user roles.
 - Can access `/admin` and `/update-role`.
 
 ### **Moderator**
+
 - Limited administrative tasks.
 - Can access `/moderator`.
 
 ### **User**
+
 - Standard user access.
 - Can access `/user`.
 
@@ -57,12 +62,14 @@ This repository implements a **Role-Based Access Control (RBAC)** system with se
 ## **Setup and Installation**
 
 ### **Clone the Repository**
+
 ```bash
 git clone https://github.com/ParvSidana/RBAC-.git
 cd backend
 ```
 
 ### **Install Dependencies**
+
 ```bash
 npm install
 ```
@@ -78,6 +85,7 @@ JWT_SECRET=your-secret-key
 ADMIN_EMAIL=admin@gmail.com
 MODERATOR_EMAIL=moderator@gmail.com
 ```
+
 ---
 
 # Key Middleware
@@ -93,4 +101,3 @@ This middleware checks if the user’s role is `Admin`. It is used to protect ro
 ### `verifyModerator`
 
 This middleware ensures that only users with the `Moderator` role can access routes like `/moderator`. If the user does not have the Moderator role, they will be denied access to these routes.
-
