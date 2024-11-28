@@ -1,4 +1,5 @@
 import { User } from "../models/user.model.js";
+import { ApiResponse } from "../utils/Apiresponse.js";
 
 const verifyAdmin = async (req, res, next) => {
   try {
@@ -7,6 +8,12 @@ const verifyAdmin = async (req, res, next) => {
     if (user.role === "Admin") {
       next();
     } else {
+      res.json(
+        new ApiResponse(
+          400,
+          "Access denied, need to be an Admin for this request"
+        )
+      );
       res.redirect("/");
     }
   } catch (error) {
@@ -24,6 +31,12 @@ const verifyModerator = async (req, res, next) => {
     if (user.role === "Moderator") {
       next();
     } else {
+      res.json(
+        new ApiResponse(
+          400,
+          "Access denied, need to be a moderator for this request"
+        )
+      );
       res.redirect("/");
     }
   } catch (error) {
